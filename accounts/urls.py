@@ -20,9 +20,6 @@ from django.conf.urls.static import static
 from .views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/',include('allauth.urls')),
-    path('',index,name="index"),
-    path('users/',include("accounts.urls"))
+    # path('profile/',)
 ]
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

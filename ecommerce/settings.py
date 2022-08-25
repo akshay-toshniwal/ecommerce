@@ -79,6 +79,10 @@ TEMPLATES = [
     },
 ]
 
+ACCOUNT_FORMS = {
+'signup': 'accounts.forms.CustomSignupForm',
+}
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'aamhimemekarinfo@gmail.com'
@@ -92,15 +96,15 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 AUTH_USER_MODEL = 'accounts.User'
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
-LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = "/users/"
+LOGIN_REDIRECT_URL = '/users/'
 
 # ACCOUNT_FORMS = {'signup': 'accounts.forms.UserCreationForm'}
 # Database
