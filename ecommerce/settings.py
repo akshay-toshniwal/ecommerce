@@ -104,7 +104,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 AUTH_USER_MODEL = 'accounts.User'
 ACCOUNT_SIGNUP_REDIRECT_URL = "/users/"
-LOGIN_REDIRECT_URL = '/users/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/accounts/login/"
 
 # ACCOUNT_FORMS = {'signup': 'accounts.forms.UserCreationForm'}
 # Database
