@@ -34,6 +34,15 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class User(AbstractBaseUser):
+    MALE = 1
+    FEMALE = 2
+    OTHER = 3
+    GENDER_CHOICES = (
+        (MALE, 'Male'),
+        (FEMALE, 'Female'),
+        (OTHER , 'Other'),
+    )
+    username = models.CharField(max_length=25)    
     name = models.CharField(max_length=100)    
     email=models.EmailField(blank=False, null=False, unique=True)
     address = models.TextField(max_length=500, blank=True, null=True)
@@ -46,7 +55,7 @@ class User(AbstractBaseUser):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     dob = models.DateField(null=True)
-    gender = models.CharField(max_length=6)
+    gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True, blank=True)
     # location_id=models.ForeignKey(Location, to_fields=['state_id', 'city_id','area_id'], related_name='abc', on_delete=models.CASCADE)
 
   

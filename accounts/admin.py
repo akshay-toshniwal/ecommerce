@@ -14,7 +14,7 @@ class UserAdmin(BaseUserAdmin):
     list_ordering = ['-id']
     list_filter = ('shop', 'active')
     fieldsets = (
-        ('Personal info', {'fields': ('name','email', 'address','dob')}),
+        ('Personal info', {'fields': ('name','email','username', 'address','dob')}),
         ('Permissions', {'fields': ('shop', 'active', 'admin',
           )}),
     )
