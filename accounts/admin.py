@@ -10,11 +10,11 @@ User = get_user_model()
 # Register your models here.
 class UserAdmin(BaseUserAdmin):
 
-    list_display = ('id', 'fname', 'lname', 'email')
+    list_display = ('id', 'name', 'email')
     list_ordering = ['-id']
     list_filter = ('shop', 'active')
     fieldsets = (
-        ('Personal info', {'fields': ('fname', 'lname','email', 'address','dob')}),
+        ('Personal info', {'fields': ('name','email', 'address','dob')}),
         ('Permissions', {'fields': ('shop', 'active', 'admin',
           )}),
     )
@@ -27,8 +27,8 @@ class UserAdmin(BaseUserAdmin):
          ),
     )
 
-    search_fields = ('email', 'fname')
-    ordering = ('email', 'fname', 'id')
+    search_fields = ('email', 'name')
+    ordering = ('email', 'name', 'id')
     filter_horizontal = ()
 
     def get_inline_instances(self, request, obj=None):

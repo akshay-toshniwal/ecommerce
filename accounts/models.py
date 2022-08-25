@@ -34,8 +34,7 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class User(AbstractBaseUser):
-    fname = models.CharField(max_length=50, blank=True, null=True)
-    lname = models.CharField(max_length=50, blank=True, null=True)      
+    name = models.CharField(max_length=100)    
     email=models.EmailField(blank=False, null=False, unique=True)
     address = models.TextField(max_length=500, blank=True, null=True)
     password = models.CharField(max_length=200)
@@ -60,7 +59,7 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_full_name(self):
-        return self.fname + " " + self.lname
+        return self.name
 
     def get_short_name(self):
         return self.email
