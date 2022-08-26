@@ -20,6 +20,6 @@ from django.conf.urls.static import static
 from .views import *
 
 urlpatterns = [
-    # path('profile/',)
+    path('profile/',profile,name='edit_profile')
 ]
 urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

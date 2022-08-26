@@ -1,0 +1,36 @@
+{% extends "account/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="col-sm-6 col-sm-offaset-3">
+    <h1>Edit Profile</h1>
+    <div class="form-separator">
+    <form class="editprofile" id="ediprofile_form" method="post" action="/users/profile/">
+
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Name</label>
+            {{ profile_form.name }}
+        </div><BR>
+        <div class="form-group">
+            <label>Username</label>
+            {{ profile_form.username }}
+        </div><BR>
+        <div class="form-group">
+            <label>Date Of Birth</label>
+            {{ profile_form.dob }}
+        </div><BR>
+        <div class="form-group">
+            <label>Gender</label>
+            {{ profile_form.gender }}
+        </div><BR>
+        <div class="form-group">
+            <label>Address</label>
+            {{ profile_form.address }}
+        </div><BR>
+        <button type="submit" class="btn btn-primary">Edit Profile &raquo;</button>
+
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

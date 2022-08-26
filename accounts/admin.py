@@ -1,21 +1,20 @@
 from django.contrib import admin
-from .models import *
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-
-
+from django.contrib.auth import get_user_model
+from .models import *
 
 User = get_user_model()
-# Register your models here.
+
 class UserAdmin(BaseUserAdmin):
 
-    list_display = ('id', 'name', 'email')
+    list_display = ('id', 'name', 'username', 'email')
     list_ordering = ['-id']
-    list_filter = ('shop', 'active')
+    list_filter = ('shop', 'is_active', 'admin')
     fieldsets = (
-        ('Personal info', {'fields': ('name','email','username', 'address','dob')}),
-        ('Permissions', {'fields': ('shop', 'active', 'admin',
+        (None, {'fields': ('email','password')}),
+        ('Personal info', {'fields': ('name', 'username', 'address','gender')}),
+        ('Permissions', {'fields': ('shop', 'is_active', 'admin',
           )}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -23,7 +22,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email')}
+            'fields': ('email', 'username')}
          ),
     )
 

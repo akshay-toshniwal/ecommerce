@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 class UserManager(BaseUserManager):
-    def create_user(self, email,password=None, shop=False, active=True, admin=False):
+    def create_user(self, email,password=None, shop=False, admin=False):
         if not email:
             raise ValueError('users must have a email')
 
@@ -12,7 +12,6 @@ class UserManager(BaseUserManager):
         user_obj = self.model(email=email)
         user_obj.set_password(password)
         user_obj.shop = shop
-        user_obj.active = active
         user_obj.admin = admin
        
 
@@ -47,7 +46,7 @@ class User(AbstractBaseUser):
     email=models.EmailField(blank=False, null=False, unique=True)
     address = models.TextField(max_length=500, blank=True, null=True)
     password = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="images/", blank=True, null=True)
+    # image = models.ImageField(upload_to="images/", blank=True, null=True)
     is_verified = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
     shop = models.BooleanField(default=False)
@@ -57,7 +56,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True) 
     dob = models.DateField(null=True)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES, null=True, blank=True)
-    is_active = models.BooleanField(default=True)
 
   
     USERNAME_FIELD = 'email'
@@ -85,9 +83,6 @@ class User(AbstractBaseUser):
     def is_staff(self):
         return self.shop
 
-    @property
-    # def is_active(self):
-    #     return self.active
 
     @property
     def is_superuser(self):
