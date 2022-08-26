@@ -1,4 +1,5 @@
 from dataclasses import fields
+from queue import Empty
 from allauth.account.forms import SignupForm
 from django import forms
 from .models import *
@@ -12,7 +13,7 @@ class CustomSignupForm(SignupForm):
     username = forms.CharField(max_length=25, label='UserName')
     dob = forms.DateField(widget = NumberInput(attrs={'type':'date'}),label='Date Of Birth')
     address = forms.CharField(widget=forms.Textarea(attrs={'rows':3}),label='Address')
-    gender = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect)
+    gender = forms.ChoiceField(choices=CHOICES, widget=forms.Select)
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
@@ -34,7 +35,8 @@ class EditProfile(forms.ModelForm):
         widgets = {
             "name" : forms.TextInput(attrs = {'placeholder': 'Name', 'class': 'form-control', 'required': 'required'}),
             "username" : forms.TextInput(attrs = {'placeholder': 'UserName', 'class': 'form-control', 'required': 'required'}),
-            "address" : forms.Textarea(attrs = {'placeholder': 'Address', 'class': 'form-control', 'required': 'required'}),
+            "address" : forms.Textarea(attrs = {'rows':3, 'placeholder': 'Address', 'class': 'form-control', 'required': 'required'}),
             "dob" : forms.NumberInput(attrs = {'type':'date','placeholder': 'Date Of Birth', 'class': 'form-control', 'required': 'required'}),
-            "gender" : forms.RadioSelect(choices = CHOICES,attrs = {'rows':2, 'class': 'form-control', 'required': 'required'})
+            "gender" : forms.Select(choices = CHOICES,attrs = {'class': 'form-control', 'required': 'required'})
         }
+        
